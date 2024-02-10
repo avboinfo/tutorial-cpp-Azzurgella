@@ -10,6 +10,7 @@
 using namespace std;
 
 const string FILENAME = "SortingArray.txt";
+int numscambi;
 
 void stampaVettore( string v[], int l ) {
     cout << endl;
@@ -28,12 +29,46 @@ int bubbleSort( string v[], int l ) {
                 tmp = v[j];
                 v[j] = v[j+1];
                 v[j+1] = tmp;
+                numOp++;
             }
-            numOp++;
         }
         if (alreadySorted) break;
     }
     return numOp;
+}
+
+void swap(string arr[] , int pos1, int pos2){
+	string temp;
+	temp = arr[pos1];
+	arr[pos1] = arr[pos2];
+	arr[pos2] = temp;
+    numscambi++;
+}
+
+int partition(string arr[], int low, int high, string pivot){
+	int i = low;
+	int j = low;
+	while( i <= high){
+		if(arr[i] > pivot){
+			i++;
+		}
+		else{
+			swap(arr,i,j);
+			i++;
+			j++;
+		}
+	}
+	return j-1;
+}
+
+void quickSort(string arr[], int low, int high){
+	if(low < high){
+	string pivot = arr[high];
+	int pos = partition(arr, low, high, pivot);
+	
+	quickSort(arr, low, pos-1);
+	quickSort(arr, pos+1, high);
+	}
 }
 
 int main()
@@ -43,7 +78,7 @@ int main()
     if ( f.fail() ) { cout << "Il file di input non esiste"; return -1; }
     
     // legge tutto il file per misurarne il numero di righe
-    int n;
+    int n, utente;
     string s;
     for (n=0; getline(f,s); n++);
     f.close();
@@ -55,9 +90,22 @@ int main()
     for (int i=0; i<n; i++) getline( f, vs[i] );
 
     stampaVettore(vs, n);
-    int x = bubbleSort(vs, n);
-    cout << "Eseguiti " << x << " confronti." << endl;
-    stampaVettore(vs, n);
+
+    cout<<"Con quale metodo vuoi riordinare il file? 1-Bubblesort 2-Quicksort"<<endl;
+    cin>>utente;
+    if(utente==1){
+        int x = bubbleSort(vs, n);
+        cout << "Eseguiti " << x << " scambi con bubblesort." << endl;
+        stampaVettore(vs, n);
+    }
+
+    else if(utente==2){
+        numscambi=0;
+        quickSort(vs, 0, n-1);
+        cout << "Eseguiti " << numscambi << " scambi con quicksort." << endl;
+        stampaVettore(vs, n);
+    }
+
 
     return 0;
 }
