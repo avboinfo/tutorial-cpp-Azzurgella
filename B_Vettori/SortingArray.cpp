@@ -105,7 +105,6 @@ int main()
         cout << "Eseguiti " << numscambi << " scambi con quicksort." << endl;
         stampaVettore(vs, n);
     }
-
-
+    
     return 0;
 }
