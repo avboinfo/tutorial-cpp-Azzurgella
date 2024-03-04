@@ -53,6 +53,7 @@ public:
     }while (!sanifica_input());
     numero_mosse++;
     }
+    
     void risultato_mossa(){
         //codice
     }
