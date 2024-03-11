@@ -1,9 +1,9 @@
-// Allegra Di Mattia 3CIN 4/3/24 - classe Vettore
+// Allegra Di Mattia 3CIN 11/3/24 - classe Vettore
 
 #include <iostream>
 using namespace std;
 
-class Vettore
+class Pila
 {
 private:
 
@@ -12,7 +12,7 @@ private:
 
 public:
 
-    Vettore(int dim, int delta)
+    Pila(int dim, int delta)
     {
         this->dim = dim;
         this->delta = 10;
@@ -20,7 +20,7 @@ public:
         v = new int[dim];
     }
 
-    void add(int n)
+    void push(int n)
     {
         if (len == dim)
         {
@@ -37,6 +37,11 @@ public:
         len++;
     }
 
+    int pop(){
+        if(len==0) {cout<<endl<<"Errore, la pila è: "; return 0;}
+        return v[--len];
+    }
+
     int getElement(int index){
         return v[index];
     }
@@ -47,7 +52,7 @@ public:
 
     void print()
     {
-        cout << "Contenuto del vettore: ";
+        cout <<endl<<"Contenuto della pila: ";
         for (int i = 0; i < len; i++)
         {
             cout << v[i] << " ";
@@ -58,12 +63,16 @@ public:
 
 int main(int argc, char const *argv[])
 {
-    Vettore vett(10, 10);
-    for (int i = 0; i < 100; i++)
-        vett.add(i);
+    Pila vett(10, 10);
+    for (int i = 0; i < 100; i++) vett.push(i);
 
     cout<<"Ecco la tua posizione "<<vett.getElement(10)<<endl;
     vett.setElement(10, 333);
+
     vett.print();
+    cout<<endl<<"Ecco la perte che verrà eliminata: ";
+    for (int i = 0; i < 110; i++) cout<<vett.pop()<<" ";
+    vett.print();
+
     return 0;
 }
