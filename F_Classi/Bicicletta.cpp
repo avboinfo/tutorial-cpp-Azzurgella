@@ -7,9 +7,9 @@ using namespace std;
 
 class Bicicletta {
   public:
-    int raggio;
+    int raggio; //attributi
     string colore;
-    Bicicletta() {
+    Bicicletta() { //costrutto
         raggio=10;  //questi sono i dati predefiniti
         colore="bianco";
     }
@@ -18,7 +18,7 @@ class Bicicletta {
         colore=c;
     }
 
-    void presentati() {
+    void presentati() { //metodo
         cout << "Buongiorno, sono una bici di colore " << colore << " e con le ruote " << raggio << "!" << endl; //se io non metto un colore e un raggio definito metterà quello predefinito 
     }
 };
