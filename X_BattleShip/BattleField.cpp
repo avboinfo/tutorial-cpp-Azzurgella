@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-const int DIM = 10;
+const int DIM = 5;
 const char SHIP = 'X';
 const char MISS = 'o';
 const char HIT = '*';
